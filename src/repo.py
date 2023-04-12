@@ -17,9 +17,9 @@ class Repository:
         # create .gitignore
         with open(f"{self.path}/{self.name}/.gitignore", "w") as gitignore:
             # get gitignore type
-            print("\nGitignore Templates:")
+            print("Gitignore Templates:")
             for type in self.gitignore_types:
-                print(type)
+                print(" - " + type)
 
             # repeat until user inputed type is in the list
             gitignore_type = ""
@@ -49,4 +49,8 @@ class Repository:
 
         except git.exc.GitCommandError:
             print(f"fatal: unable to access '{url}'")
+    
+    # get git status
+    def git_status(self):
+        return self.repo.git.status()
     
