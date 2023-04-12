@@ -16,7 +16,7 @@ action_index = options.index(action)
 
 
 # repo
-my_repo = Repository(input("Repository name: "), "my_repos")
+my_repo = Repository(input("Repository name: "), "test_repos")
 
 # action indexes
 if action_index == 0:
