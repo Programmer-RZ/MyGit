@@ -9,31 +9,27 @@ child_commands = {"create" : repo.CreateRepo(),
 
 parent_commands = {"autogit" : child_commands}
 
-command = input("AutoGit command: ").split(" ")
+command = input("AutoGit command: ")
 
-try:   
-    parent = command[0]
+
+try:
+    parent = command.split(" ")[0]
 except IndexError:
     parent = " "
-
 try:
-    child = command[1]
+    child = command.split(" ")[1]
 except IndexError:
     child = " "
-
 try:
-    child_inputs = command[2:None]
+    child_inputs = command.split(" ")[2:None]
 except IndexError:
     child_inputs = [" "]
 
-if parent in parent_commands.keys():
-    if child in parent_commands[parent].keys():
-        try:
-            parent_commands[parent][child].run(child_inputs)
-        except:
-            print(f"command failed to execute")
+
+try:
+    parent_commands[parent][child].run(child_inputs)
+except:
+    print(f"Failed to execute '{command}'. Please check your spelling and try again")
+
+//find binary search in python.
     
-    else:
-        print(f"'{child}' is not recognized as an AutoGit command")
-else:
-    print(f"'{parent}' is not recognized as an AutoGit command")
