@@ -1,41 +1,39 @@
-from repo import Repository
 from sys import exit
 
-
-# git actions
-options = ["create repo template", "clone a repo"]
-print("Git Actions: ")
-for option in options:
-    print(" - " + option)
-
-action = ""
-while action.lower() not in options:
-    action = input("Choose a Git Action: ")
-    if action == "./quit":
-        exit()
-
-print('\n')
-action_index = options.index(action.lower())
+import repo
 
 
+# autogit commands
+child_commands = {"create" : repo.CreateRepo(), 
+                  "clone" : repo.CloneRepo()}
 
-# repo
-my_repo = Repository(input("Repository name: "), "test_repos")
+parent_commands = {"autogit" : child_commands}
 
-# action indexes
-if action_index == 0:
-    # create repo
-    my_repo.create_repo()
-    my_repo.create_gitignore()
-    my_repo.create_readme()
+command = input("AutoGit command: ").split(" ")
 
-    print("\nCreated .gitignore and README.md")
+try:   
+    parent = command[0]
+except IndexError:
+    parent = " "
 
-elif action_index == 1:
-    # clone repo
-    my_repo.clone_repo(input("URL: "), input("Branch: "), True)
+try:
+    child = command[1]
+except IndexError:
+    child = " "
 
+try:
+    child_inputs = command[2:None]
+except IndexError:
+    child_inputs = [" "]
 
-# print git status
-print("\nCurrent Git Status: ")
-print(my_repo.git_status())
+if parent in parent_commands.keys():
+    if child in parent_commands[parent].keys():
+        try:
+            parent_commands[parent][child].run(child_inputs)
+        except:
+            print(f"command failed to execute")
+    
+    else:
+        print(f"'{child}' is not recognized as an AutoGit command")
+else:
+    print(f"'{parent}' is not recognized as an AutoGit command")
