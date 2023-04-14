@@ -1,35 +1,51 @@
 from sys import exit
 
-import repo
+from repo import CreateRepo, CloneRepo
+from directory import Directory
 
+dir = Directory()
 
 # autogit commands
-child_commands = {"create" : repo.CreateRepo(), 
-                  "clone" : repo.CloneRepo()}
+child_commands = {"create" : CreateRepo(dir.getPath()).run, 
+                  "clone" : CloneRepo(dir.getPath()).run,
+                  "cd" : dir.switchDir}
 
 parent_commands = {"autogit" : child_commands}
 
-command = input("AutoGit command: ")
 
+while True:
+    command = input(dir.getPath() + " ")
 
-try:
-    parent = command.split(" ")[0]
-except IndexError:
-    parent = " "
-try:
-    child = command.split(" ")[1]
-except IndexError:
-    child = " "
-try:
-    child_inputs = command.split(" ")[2:None]
-except IndexError:
-    child_inputs = [" "]
+    if command == "autogit ./quit":
+        break
+    
+    # split the command
+    try:
+        parent = command.split(" ")[0]
+    except IndexError:
+        parent = " "
+    try:
+        child = command.split(" ")[1]
+    except IndexError:
+        child = " "
 
+    try:
+        user_inputs = command.split(" ")[2:None]
+    except IndexError:
+        user_inputs = [" "]
 
-try:
-    parent_commands[parent][child].run(child_inputs)
-except:
-    print(f"Failed to execute '{command}'. Please check your spelling and try again")
+    arguments = []
+    tags = []
+    for i in user_inputs:
+        if i[0:2] == "--":
+            tags.append(i[2:None])
+        
+        else:
+            arguments.append(i)
 
-//find binary search in python.
+    # execute it
+    try:
+        parent_commands[parent][child](arguments, tags)
+    except Exception as e:
+        print(f"Failed to execute '{command}'. {e}")
     
