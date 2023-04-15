@@ -1,16 +1,21 @@
 from sys import exit
 
-from repo import CreateRepo, CloneRepo
+from createRepo import CreateRepo
+from cloneRepo import CloneRepo
 from directory import Directory
 
 dir = Directory()
 
 # autogit commands
-child_commands = {"create" : CreateRepo(dir.getPath()).run, 
-                  "clone" : CloneRepo(dir.getPath()).run,
-                  "cd" : dir.switchDir}
+autogit_commands = {"create" : CreateRepo(dir.getPath()).run, 
+                  "clone" : CloneRepo(dir.getPath())
+                  }
 
-parent_commands = {"autogit" : child_commands}
+autodir_commands = {"cd" : dir.switchDir}
+
+parent_commands = {"autogit" : autogit_commands,
+                   "autodir" : dir.switchDir
+                   }
 
 
 while True:
