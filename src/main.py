@@ -12,7 +12,7 @@ autogit_commands = {"create" : CreateRepo(dir.getPath()).run,
 autodir_commands = {"cd" : dir.switchDir}
 
 parent_commands = {"autogit" : autogit_commands,
-                   "autodir" : dir.switchDir
+                   "autodir" : autodir_commands
                    }
 
 
