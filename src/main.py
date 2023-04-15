@@ -1,5 +1,3 @@
-from sys import exit
-
 from createRepo import CreateRepo
 from cloneRepo import CloneRepo
 from directory import Directory
