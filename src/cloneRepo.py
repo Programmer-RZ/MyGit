@@ -3,12 +3,13 @@ import git
 from repo import Repository
 
 class CloneRepo(Repository):
-    def __init__(self, path):
-        name = ""
-        super().__init__(name, path)
+    def __init__(self):
+        
+        super().__init__("", "")
     
-    def run(self, arguments, tags):
+    def run(self, path, arguments, tags):
         self.name = arguments[0]
+        self.path = path
         self.clone_repo(arguments[1], tags[0], True)
 
     # functions to clone a repo

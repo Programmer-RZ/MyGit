@@ -8,5 +8,5 @@ class Directory:
     def getPath(self):
         return self.path
     
-    def switchDir(self, arguments, tags):
-        self.path = os.path.abspath(os.path.join(self.path, arguments[0]))
+    def switchDir(self, path, arguments, tags):
+        self.path = os.path.abspath(os.path.join(path, arguments[0]))

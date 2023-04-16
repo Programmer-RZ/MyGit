@@ -5,8 +5,8 @@ from directory import Directory
 dir = Directory()
 
 # autogit commands
-autogit_commands = {"create" : CreateRepo(dir.getPath()).run, 
-                  "clone" : CloneRepo(dir.getPath())
+autogit_commands = {"create" : CreateRepo().run, 
+                  "clone" : CloneRepo().run
                   }
 
 autodir_commands = {"cd" : dir.switchDir}
@@ -14,7 +14,6 @@ autodir_commands = {"cd" : dir.switchDir}
 parent_commands = {"autogit" : autogit_commands,
                    "autodir" : autodir_commands
                    }
-
 
 while True:
     command = input(dir.getPath() + " ")
@@ -48,7 +47,7 @@ while True:
 
     # execute it
     try:
-        parent_commands[parent][child](arguments, tags)
+        parent_commands[parent][child](dir.getPath(), arguments, tags)
     except Exception as e:
         print(f"Failed to execute '{command}'. {e}")
     

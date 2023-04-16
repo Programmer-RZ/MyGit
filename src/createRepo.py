@@ -4,13 +4,13 @@ import git
 from repo import Repository
 
 class CreateRepo(Repository):
-    def __init__(self, path):
-        name = ""
+    def __init__(self):
 
-        super().__init__(name, path)
+        super().__init__("", "")
     
-    def run(self, arguments, tags):
+    def run(self, path, arguments, tags):
         self.name = arguments[0]
+        self.path = path
 
         self.create_repo()
         for tag in tags:
@@ -27,18 +27,18 @@ class CreateRepo(Repository):
 
     def create_gitignore(self, gitignore_type):
         # create .gitignore
-        print("Creating .gitignore")
+        print(f"Creating .gitignore {gitignore_type}")
         with open(f"{self.path}/{self.name}/.gitignore", "w") as gitignore:
             # open .gitignore
-            gitignore_types_path = os.path.join(self.path, "..")
+            gitignore_types_path = os.path.join(os.path.dirname(__file__), '..')
 
-            gitignore_info = open(f"{gitignore_types_path}/gitignore_templates/{gitignore_type}_gitignore.txt", "r")
+            gitignore_info = open(f"{gitignore_types_path}/gitignore_templates/{gitignore_type}.txt", "r")
             for line in gitignore_info.readlines():
                 gitignore.write(line)
 
             gitignore_info.close()
 
-        print("Successfully created .gitignore")
+        print(f"Successfully created .gitignore {gitignore_type}")
     
     def create_readme(self):
         # create README.md
