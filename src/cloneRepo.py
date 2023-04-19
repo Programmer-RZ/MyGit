@@ -7,10 +7,12 @@ class CloneRepo(Repository):
         
         super().__init__("", "")
     
-    def run(self, path, arguments, tags):
+    def run(self, path, arguments, tags, repo):
         self.name = arguments[0]
         self.path = path
         self.clone_repo(arguments[1], tags[0], True)
+
+        return self.repo
 
     # functions to clone a repo
     def clone_repo(self, url, branch, recursive):

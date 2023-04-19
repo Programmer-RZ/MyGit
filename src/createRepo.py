@@ -8,7 +8,7 @@ class CreateRepo(Repository):
 
         super().__init__("", "")
     
-    def run(self, path, arguments, tags):
+    def run(self, path, arguments, tags, repo):
         self.name = arguments[0]
         self.path = path
 
@@ -16,6 +16,8 @@ class CreateRepo(Repository):
         for tag in tags:
             self.create_gitignore(tag)
         self.create_readme()
+
+        return self.repo
 
     # functions to create template repo
     def create_repo(self):
