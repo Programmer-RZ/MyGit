@@ -1,18 +1,23 @@
 from repo import Repository
 from createRepo import CreateRepo
 from cloneRepo import CloneRepo
-
 from editRepo import OpenRepo, StageCommit
+
 from directory import Directory
+from utils import TextColor
+
+# fix Windows ANSI escape handling
+from colorama import init
+init()
 
 dir = Directory()
 repo = None
 
 # autogit commands
-autogit_commands = {"create" : CreateRepo(), 
-                  "clone" : CloneRepo(),
-                  "open" : OpenRepo(),
-                  "stageCommit" : StageCommit() 
+autogit_commands = {"create" : CreateRepo().run, 
+                  "clone" : CloneRepo().run,
+                  "open" : OpenRepo().run,
+                  "stageCommit" : StageCommit().run 
                   }
 
 autodir_commands = {"cd" : dir.switchDir}
@@ -22,23 +27,24 @@ parent_commands = {"autogit" : autogit_commands,
                    }
 
 while True:
-    command = input(dir.getPath() + " ")
+    print(TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END)
+    command = input(">> ")
 
-    if command == "autogit ./quit":
+    if command == "autogit/.quit":
         break
     
     # split the command
     try:
-        parent = command.split(".")[0]
+        parent = command.split(",")[0]
     except IndexError:
         parent = " "
     try:
-        child = command.split(".")[1]
+        child = command.split(",")[1]
     except IndexError:
         child = " "
 
     try:
-        user_inputs = command.split(".")[2:None]
+        user_inputs = command.split(",")[2:None]
     except IndexError:
         user_inputs = [" "]
 
@@ -53,12 +59,9 @@ while True:
 
     # execute it
     try:
-        if parent_commands[parent] == autogit_commands:
-            repo = parent_commands[parent][child].run(dir.getPath(), arguments, tags, repo)
+        repo = parent_commands[parent][child](dir.getPath(), arguments, tags, repo)
         
-        else:
-            parent_commands[parent][child](dir.getPath(), arguments, tags)
 
     except Exception as e:
-        print(f"Failed to execute '{command}'. {e}")
+        print(f"{TextColor.LIGHT_RED} Failed to execute '{command}'. {e}{TextColor.END}")
     
