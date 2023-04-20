@@ -74,3 +74,31 @@ class Branch(Repository):
     
     def deleteBranch(self, name):
         self.repo.delete_head(name)
+
+class Status(Repository):
+    def __init__(self):
+        super().__init__(" ", " ")
+    
+    def run(self, path, arguments, tags, repo):
+        self.path = path
+        self.repo = repo
+
+        self.get_status()
+
+        return self.repo
+
+    def get_status(self):
+        modified = self.repo.git.diff('--name-only').split('\n')
+        untracked = self.repo.untracked_files
+
+        print(TextColor.CYAN)
+
+        print("Modified")
+        for file in modified:
+            print(" - " + file)
+
+        print("Untracked")
+        for file in untracked:
+            print(" - " + file)
+        
+        print(TextColor.END)

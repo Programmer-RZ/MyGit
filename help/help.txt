@@ -1,0 +1,66 @@
+autogit
+    ./quit
+        arguments:
+            None
+        tags:
+            None
+        Action:
+            exit
+    
+    help
+        arguments:
+            None
+        tags:
+            None
+        Action:
+            show list of all autogit commands
+
+    create
+        arguments:
+            <name>
+        tags:
+            --<gitignore_template>
+        Action:
+            create git repo in current path. Include README.md and optional .gitignore template
+
+    open
+        arguments:
+            <name>
+        tags:
+            None
+        Action:
+            open existing git repo in current path
+        
+    branch
+        arguments:
+            <name>
+        tags:
+            --new
+            --switch
+            --delete
+        Action:
+            branch actions in current opened repo. Create new branch, swithc branch, or delete branch
+
+    status
+        arguments:
+            None
+        tags:
+            None
+        Action:
+            return modified and untracked files
+
+    stageCommit
+        arguments:
+            <message>
+        tags:
+            None
+        Action:
+            stage changes and commit all
+        
+    cd
+        arguments:
+            <new>
+        tags:
+            None
+        Action:
+            change directory to CurrentPath + new

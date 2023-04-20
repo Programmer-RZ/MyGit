@@ -1,8 +1,9 @@
 from repo import Repository
 from createRepo import CreateRepo
-from editRepo import OpenRepo, StageCommit, Branch
+from editRepo import OpenRepo, StageCommit, Branch, Status
 
 from directory import Directory
+from help import Help
 from utils import TextColor
 
 # fix Windows ANSI escape handling
@@ -17,6 +18,8 @@ autogit_commands = {"create" : CreateRepo().run,
                   "open" : OpenRepo().run,
                   "stageCommit" : StageCommit().run,
                   "branch" : Branch().run,
+                  "status" : Status().run,
+                  "help" : Help().run,
                   "cd" : dir.switchDir 
                   }
 
@@ -65,7 +68,6 @@ while True:
     try:
         repo = parent_commands[parent][child](dir.getPath(), arguments, tags, repo)
         
-
     except Exception as e:
         print(f"{TextColor.LIGHT_RED} Failed to execute '{command}'. {e}{TextColor.END}")
     
