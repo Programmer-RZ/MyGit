@@ -23,7 +23,7 @@ class StageCommit(Repository):
         for word in arguments:
             word.replace('"', "")
 
-            message += word
+            message += word + " "
 
         self.stageAndCommit(message)
 
