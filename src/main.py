@@ -31,7 +31,9 @@ parent_commands = {"autogit" : autogit_commands,
 while True:
     path = TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END
     branch = ""
+    repo_name = ""
     if repo != None:
+        path = TextColor.LIGHT_GREEN + repo.working_tree_dir + TextColor.END
         branch = repo.active_branch
     
     print(path + "  " + f"({branch})")

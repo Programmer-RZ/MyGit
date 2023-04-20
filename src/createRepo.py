@@ -17,6 +17,13 @@ class CreateRepo(Repository):
         self.create_repo()
         for tag in tags:
             self.create_gitignore(tag)
+
+        if len(tags) == 0:
+            # no gitignore templates
+            # so create an empty gitignore
+            gitignore = open(f"{self.path}/{self.name}/.gitignore", "w")
+            gitignore.close()
+
         self.create_readme()
 
         return self.repo
