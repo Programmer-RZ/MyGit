@@ -30,7 +30,7 @@ while True:
     print(TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END)
     command = input(">> ")
 
-    if command == "autogit/.quit":
+    if command == "autogit,.quit":
         break
     
     # split the command
