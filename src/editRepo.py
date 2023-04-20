@@ -102,3 +102,21 @@ class Status(Repository):
             print(" - " + file)
         
         print(TextColor.END)
+
+class Sync(Repository):
+    def __init__(self):
+        super().__init__(" ", " ")
+    
+    def run(self, path, arguments, tags, repo):
+        self.repo = repo
+
+        self.pull()
+        self.push()
+
+        return self.repo
+
+    def pull(self):
+        self.repo.git.pull('origin', self.repo.head)
+    
+    def push(self):
+        self.repo.git.push('origin', self.repo.head)
