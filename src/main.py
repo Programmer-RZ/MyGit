@@ -1,7 +1,6 @@
 from repo import Repository
 from createRepo import CreateRepo
-from cloneRepo import CloneRepo
-from editRepo import OpenRepo, StageCommit
+from editRepo import OpenRepo, StageCommit, Branch
 
 from directory import Directory
 from utils import TextColor
@@ -15,19 +14,23 @@ repo = None
 
 # autogit commands
 autogit_commands = {"create" : CreateRepo().run, 
-                  "clone" : CloneRepo().run,
                   "open" : OpenRepo().run,
-                  "stageCommit" : StageCommit().run 
+                  "stageCommit" : StageCommit().run,
+                  "branch" : Branch().run,
+                  "cd" : dir.switchDir 
                   }
 
-autodir_commands = {"cd" : dir.switchDir}
 
 parent_commands = {"autogit" : autogit_commands,
-                   "autodir" : autodir_commands
                    }
 
 while True:
-    print(TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END)
+    path = TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END
+    branch = ""
+    if repo != None:
+        branch = repo.active_branch
+    
+    print(path + "  " + f"({branch})")
     command = input(">> ")
 
     if command == "autogit ./quit":
