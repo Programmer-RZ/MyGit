@@ -1,6 +1,6 @@
 from repo import Repository
 from createRepo import CreateRepo
-from editRepo import OpenRepo, StageCommit, Branch, Status
+from editRepo import OpenRepo, StageCommit, Branch, Status, Sync
 
 from directory import Directory
 from help import Help
@@ -20,6 +20,7 @@ autogit_commands = {"create" : CreateRepo().run,
                   "branch" : Branch().run,
                   "status" : Status().run,
                   "help" : Help().run,
+                  "sync" : Sync().run,
                   "cd" : dir.switchDir 
                   }
 
