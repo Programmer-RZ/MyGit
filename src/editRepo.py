@@ -18,7 +18,12 @@ class StageCommit(Repository):
     def run(self, path, arguments, tags, repo):
         self.repo = repo
 
-        message = arguments[0]
+        message = ""
+
+        for word in arguments:
+            word.replace('"', "")
+
+            message += word
 
         self.stageAndCommit(message)
 

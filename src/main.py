@@ -30,23 +30,24 @@ while True:
     print(TextColor.LIGHT_GREEN + dir.getPath() + TextColor.END)
     command = input(">> ")
 
-    if command == "autogit,.quit":
+    if command == "autogit ./quit":
         break
     
     # split the command
     try:
-        parent = command.split(",")[0]
+        parent = command.split(" ")[0]
     except IndexError:
         parent = " "
     try:
-        child = command.split(",")[1]
+        child = command.split(" ")[1]
     except IndexError:
         child = " "
 
     try:
-        user_inputs = command.split(",")[2:None]
+        user_inputs = command.split(" ")[2:None]
     except IndexError:
         user_inputs = [" "]
+    
 
     arguments = []
     tags = []
