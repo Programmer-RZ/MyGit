@@ -26,5 +26,6 @@ Use `autogit cd` to switch paths. `autogit cd` is the same as `cd`
 
 Now use `autogit create` to create a new git repository template. You can see the list of **gitignore_templates** in the `gitignore_templates` folder.
 
+![image](https://user-images.githubusercontent.com/123858154/233463043-057a0b93-ffa3-49f5-9194-0637991664e5.png)
 
 Congratulations! You have just created a git repository with a README.md and a .gitignore in just TWO autogit commands!
