@@ -25,6 +25,6 @@ class StageCommit(Repository):
         return self.repo
     
     def stageAndCommit(self, message):
-        self.repo.git.add(update=True)
+        self.repo.git.add(".")
 
         self.repo.index.commit(message)
