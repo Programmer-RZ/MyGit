@@ -1,6 +1,5 @@
-from repo import Repository
-from createRepo import CreateRepo
-from editRepo import OpenRepo, StageCommit, Branch, Status, Sync
+from builtin_commands.createRepo import CreateRepo
+from builtin_commands.editRepo import OpenRepo, StageCommit, Branch, Status, Sync
 
 from directory import Directory
 from help import Help
@@ -72,5 +71,6 @@ while True:
         repo = parent_commands[parent][child](dir.getPath(), arguments, tags, repo)
         
     except Exception as e:
-        print(f"{TextColor.LIGHT_RED} Failed to execute '{command}'. {e}{TextColor.END}")
+        print(f"{TextColor.LIGHT_RED} Failed to execute '{command}'")
+        print(f"{e}{TextColor.END}")
     
