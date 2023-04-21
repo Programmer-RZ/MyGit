@@ -1,4 +1,4 @@
-autogit
+mygit (built-in commands)
     ./quit
         arguments:
             None

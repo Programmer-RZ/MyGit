@@ -1,10 +1,10 @@
-# AutoGit
-Git is not beginner friendly. I myself have had a hard time learning Git. AutoGit is the same as Git, but it has easy to remember commands such as "sync" or "create"
+# MyGit
+MyGit is a Git clone, with the ability to create your OWN commands!
 
 # Help
-- You can find the list of commands by typing "autogit help"
+- You can find the list of built-in commands by typing "mygit help"
 
-# Features
+# Built In Features
 - Git repository template with README.md and .gitignore
 - Stage and commit all
 - Create, switch, and delete branches
@@ -15,17 +15,3 @@ Git is not beginner friendly. I myself have had a hard time learning Git. AutoGi
 - Git
 - Python 3.9.7 or higher
 - GitPython
-
-# Quick Start
-Once you've cloned this repository and are running the `main.py` file, you can get started right away.
-
-Use `autogit cd` to switch paths. `autogit cd` is the same as `cd`
-
-![image](https://user-images.githubusercontent.com/123858154/233460167-4cf2abc8-a289-4192-bf34-1e08f63e937f.png)
-
-
-Now use `autogit create` to create a new git repository template. You can see the list of **gitignore_templates** in the `gitignore_templates` folder.
-
-![image](https://user-images.githubusercontent.com/123858154/233463043-057a0b93-ffa3-49f5-9194-0637991664e5.png)
-
-Congratulations! You have just created a git repository with a README.md and a .gitignore in just TWO autogit commands!
