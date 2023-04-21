@@ -5,11 +5,12 @@ from repo import Repository
 
 from utils import TextColor
 
+
 class CreateRepo(Repository):
     def __init__(self):
 
         super().__init__("", "")
-    
+
     def run(self, path, arguments, tags, repo):
         self.name = arguments[0]
         self.path = path
@@ -44,9 +45,11 @@ class CreateRepo(Repository):
         print(f"Creating .gitignore {gitignore_type}")
         with open(f"{self.path}/{self.name}/.gitignore", "w") as gitignore:
             # open .gitignore
-            gitignore_types_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+            gitignore_types_path = os.path.abspath(
+                os.path.join(os.path.dirname(__file__), '..', '..'))
 
-            gitignore_info = open(f"{gitignore_types_path}/gitignore_templates/{gitignore_type}.txt", "r")
+            gitignore_info = open(
+                f"{gitignore_types_path}/gitignore_templates/{gitignore_type}.txt", "r")
             for line in gitignore_info.readlines():
                 gitignore.write(line)
 
