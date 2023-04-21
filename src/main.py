@@ -1,5 +1,5 @@
 from builtin_commands.createRepo import CreateRepo
-from builtin_commands.editRepo import OpenRepo, StageCommit, Branch, Status, Sync
+from builtin_commands.editRepo import OpenRepo, StageCommit, Branch, Status, Sync, Publish
 
 from directory import Directory
 from help import Help
@@ -20,6 +20,7 @@ autogit_commands = {"create" : CreateRepo().run,
                   "status" : Status().run,
                   "help" : Help().run,
                   "sync" : Sync().run,
+                  "publish" : Publish().run,
                   "cd" : dir.switchDir 
                   }
 
@@ -68,8 +69,10 @@ while True:
 
     # execute it
     try:
+        print(TextColor.CYAN)
         repo = parent_commands[parent][child](dir.getPath(), arguments, tags, repo)
-        
+        print(TextColor.END)
+
     except Exception as e:
         print(f"{TextColor.LIGHT_RED} Failed to execute '{command}'")
         print(f"{e}{TextColor.END}")

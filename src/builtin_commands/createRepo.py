@@ -3,8 +3,6 @@ import git
 
 from repo import Repository
 
-from utils import TextColor
-
 
 class CreateRepo(Repository):
     def __init__(self):
@@ -32,16 +30,16 @@ class CreateRepo(Repository):
     # functions to create template repo
     def create_repo(self):
         # create a git repo
-        print(TextColor.CYAN)
+        #print(TextColor.CYAN)
         print("Initilizing Repository")
         self.repo = git.Repo.init(self.path + "/" + self.name)
 
         print("Successfully initilized repository")
-        print(TextColor.END)
+        #print(TextColor.END)
 
     def create_gitignore(self, gitignore_type):
         # create .gitignore
-        print(TextColor.CYAN)
+        #print(TextColor.CYAN)
         print(f"Creating .gitignore {gitignore_type}")
         with open(f"{self.path}/{self.name}/.gitignore", "w") as gitignore:
             # open .gitignore
@@ -56,14 +54,14 @@ class CreateRepo(Repository):
             gitignore_info.close()
 
         print(f"Successfully created .gitignore {gitignore_type}")
-        print(TextColor.END)
+        #print(TextColor.END)
 
     def create_readme(self):
         # create README.md
-        print(TextColor.CYAN)
+        #print(TextColor.CYAN)
         print("Creating README.md")
         with open(f"{self.path}/{self.name}/README.md", "w") as readme:
             readme.write(f"# {self.name}")
 
         print("Successfully created README.md")
-        print(TextColor.END)
+        #print(TextColor.END)

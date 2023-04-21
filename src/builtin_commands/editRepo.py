@@ -31,6 +31,8 @@ class StageCommit(Repository):
 
         self.stageAndCommit(message)
 
+        print("Successfully staged and commited all changes")
+
         return self.repo
 
     def stageAndCommit(self, message):
@@ -51,12 +53,18 @@ class Branch(Repository):
             self.listBranch()
             return self.repo
 
-        if tags[0] == "new":
-            self.newBranch(arguments[0])
-        elif tags[0] == "switch":
-            self.switchBranch(arguments[0])
-        elif tags[0] == "delete":
-            self.deleteBranch(arguments[0])
+        if arguments[0] == "create":
+            self.newBranch(arguments[1])
+            print(f"Successfully created branch {arguments[1]}")
+        elif arguments[0] == "switch":
+            self.switchBranch(arguments[1])
+            print(f"Successfully switched to branch {arguments[1]}")
+        elif arguments[0] == "delete":
+            self.deleteBranch(arguments[1])
+            print(f"Successfully deleted branch {arguments[1]}")
+        elif arguments[0] == "merge":
+            self.mergeBranch(arguments[1])
+            print(f"Successfully merged branch {self.repo.head} with {arguments[1]}")
 
         return self.repo
 
@@ -67,6 +75,10 @@ class Branch(Repository):
             print(branch.name)
 
         print(TextColor.END)
+
+    def mergeBranch(self, name):
+        # use CLI merge command because it has better merge conflict handling
+        self.repo.git.execute(["git", "merge", f"{name}"])
 
     def newBranch(self, name):
         current = self.repo.create_head(name)
@@ -125,3 +137,24 @@ class Sync(Repository):
 
     def push(self):
         self.repo.git.push('origin', self.repo.head)
+
+
+class Publish(Repository):
+    def __init__(self):
+        super().__init__(" ", " ")
+
+    def run(self, path, arguments, tags, repo):
+        self.repo = repo
+
+        if not self.repo.remotes:
+            self.createOrigin(arguments[0])
+
+        self.publish()
+
+        return self.repo
+
+    def publish(self):
+        self.repo.git.push('origin', self.repo.head)
+
+    def createOrigin(self, url):
+        self.repo.create_remote('origin', url)

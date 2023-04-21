@@ -13,14 +13,11 @@ class Help:
         return repo
 
     def printHelp(self):
-        print(TextColor.CYAN)
 
         help_path = os.path.abspath(
             os.path.join(os.path.dirname(__file__), '..'))
         with open(f"{help_path}/help/help.txt", "r") as file:
             for line in file.readlines():
                 print(line, end="\b")
-
-        print(TextColor.END)
 
         print("\n")
