@@ -1,5 +1,6 @@
 from builtin_commands.createRepo import CreateRepo
 from builtin_commands.editRepo import OpenRepo, StageCommit, Branch, Status, Sync, Publish
+from user_commands.commands import AddCommands
 
 from directory import Directory
 from help import Help
@@ -13,7 +14,7 @@ dir = Directory()
 repo = None
 
 # autogit commands
-autogit_commands = {"create" : CreateRepo().run, 
+built_commands = {"create" : CreateRepo().run, 
                   "open" : OpenRepo().run,
                   "stageCommit" : StageCommit().run,
                   "branch" : Branch().run,
@@ -21,11 +22,17 @@ autogit_commands = {"create" : CreateRepo().run,
                   "help" : Help().run,
                   "sync" : Sync().run,
                   "publish" : Publish().run,
-                  "cd" : dir.switchDir 
-                  }
+}
+directory_commands = {
+    "cd" : dir.switchDir
+}
+user_commands = {
+    "add" : AddCommands().run
+}
 
-
-parent_commands = {"autogit" : autogit_commands,
+parent_commands = {"builtgit" : built_commands,
+                   "dir" : directory_commands,
+                   "mygit" : user_commands
                    }
 
 while True:
@@ -39,7 +46,7 @@ while True:
     print(path + "  " + f"({branch})")
     command = input(">> ")
 
-    if command == "autogit ./quit":
+    if command == "./quit":
         break
     
     # split the command
