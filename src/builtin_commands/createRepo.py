@@ -32,7 +32,7 @@ class CreateRepo(Repository):
         # create a git repo
         #print(TextColor.CYAN)
         print("Initilizing Repository")
-        self.repo = git.Repo.init(self.path + "/" + self.name)
+        self.repo = git.Repo.init(os.path.abspath(os.join(self.path, self.name)))
 
         print("Successfully initilized repository")
         #print(TextColor.END)
