@@ -1,6 +1,6 @@
 from builtin_commands.createRepo import CreateRepo
 from builtin_commands.editRepo import OpenRepo, StageCommit, Branch, Status, Sync, Publish
-from user_commands.commands import AddCommands, RunCommands
+from user_commands.commands import AddCommands, RunCommands, CreateTemplate
 
 from directory import Directory
 from help import Help
@@ -28,7 +28,8 @@ directory_commands = {
 }
 user_commands = {
     "add" : AddCommands().run,
-    "run" : RunCommands().run
+    "run" : RunCommands().run,
+    "template" : CreateTemplate().run
 }
 
 parent_commands = {"builtgit" : built_commands,

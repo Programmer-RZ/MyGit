@@ -1,7 +1,7 @@
 from repo import Repository
 
 import os
-import ntpath
+import importlib
 
 class AddCommands(Repository):
     def __init__(self):
@@ -36,8 +36,17 @@ class RunCommands(Repository):
     def run(self, path, arguments, tags, repo):
         self.repo = repo
 
-        python_script = __import__(f"mygit_scripts.{arguments[0]}")
+        python_script = importlib.import_module(f"user_commands.mygit_scripts.{arguments[0]}")
         self.repo = python_script.perform(path, arguments[1:None], tags, repo)
+
+        return repo
+
+class CreateTemplate(Repository):
+    def __init__(self):
+        super().__init__(" ", " ")
+
+    def run(self, path, arguments, tags, repo):
+        self.repo = repo
 
         return repo
         
