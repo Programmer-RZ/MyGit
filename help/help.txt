@@ -1,4 +1,4 @@
-mygit (built-in commands)
+builtgit (built-in commands)
     ./quit
         arguments:
             None
@@ -64,3 +64,28 @@ mygit (built-in commands)
             None
         Action:
             change directory to CurrentPath + new
+
+mygit (commands to create)
+    template
+        arguments:
+            name
+        tags:
+            None
+        Action:
+            creates a python script for mygit command templates
+    
+    add
+        arguments:
+            name
+        tags:
+            None
+        Action:
+            adds the user-created mygit command script from the CurrentPath\\name to the mygit_scripts path
+
+    run
+        arguments:
+            name
+        tags:
+            None
+        Action:
+            runs the user-defined command

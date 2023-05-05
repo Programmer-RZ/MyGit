@@ -1,0 +1,15 @@
+import git, os
+
+from repo import Repository
+
+class Command(Repository):
+    def __init__(self):
+        super().__init__(" ", " ")
+
+    def run(self, path, arguments, tags, repo):
+        self.repo = repo
+
+        return repo
+
+def perform(path, arguments, tags, repo):
+    Command.perform(Command, path, arguments, tags, repo)
