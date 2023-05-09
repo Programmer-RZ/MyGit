@@ -8,3 +8,4 @@ git but for lazy people. Has built-in commands like `sync` and you can create yo
 - Git
 - Python 3.9.7 or higher
 - GitPython
+- Colorama (for Windows)
