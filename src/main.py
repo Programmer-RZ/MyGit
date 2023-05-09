@@ -32,7 +32,7 @@ user_commands = {
     "template" : CreateTemplate().run
 }
 
-parent_commands = {"builtgit" : built_commands,
+parent_commands = {"auto" : built_commands,
                    "dir" : directory_commands,
                    "mygit" : user_commands
                    }

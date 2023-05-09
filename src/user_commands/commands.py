@@ -37,7 +37,7 @@ class RunCommands(Repository):
         self.repo = repo
 
         python_script = importlib.import_module(f"user_commands.mygit_scripts.{arguments[0]}")
-        self.repo = python_script.perform(path, arguments[1:None], tags, repo)
+        self.repo = python_script.run(path, arguments[1:None], tags, repo)
 
         return repo
 
@@ -66,7 +66,7 @@ class CreateTemplate(Repository):
         
         # change the template data depending on the name of the command
         data[4] = f"class {name}(Repository):\n"
-        data[14] = f"    {name}.perform({name}, path, arguments, tags, repo)"
+        data[16] = f"    {name}.run({name}, path, arguments, tags, repo)"
 
         # update the command data
         with open(f"{scripts_path}\\{name}.py", "w") as command:

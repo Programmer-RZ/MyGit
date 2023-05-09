@@ -1,4 +1,4 @@
-builtgit (built-in commands)
+auto (built-in commands)
     ./quit
         arguments:
             None

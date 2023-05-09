@@ -2,18 +2,14 @@ import git, os
 
 from repo import Repository
 
-class Command(Repository):
+class testcommand(Repository):
     def __init__(self):
         super().__init__(" ", " ")
 
     def run(self, path, arguments, tags, repo):
         self.repo = repo
-        
-        # Your code goes here!!!
-        # Note: when you make an edit, you will have to restart MyGit
-        # This will be fixed in the future
 
         return repo
 
 def run(path, arguments, tags, repo):
-    Command.run(Command, path, arguments, tags, repo)
+    testcommand.run(testcommand, path, arguments, tags, repo)

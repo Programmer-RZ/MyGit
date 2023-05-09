@@ -24,6 +24,9 @@ class StageCommit(Repository):
 
         message = ""
 
+        if len(arguments) == 0:
+            raise RuntimeError("No commit message was inputted")
+
         for word in arguments:
             word.replace('"', "")
 
