@@ -1,15 +1,8 @@
 # MyGit
-MyGit is a Git clone, with the ability to create your OWN commands!
+git but for lazy people. Has built-in commands like `sync` and you can create you own commands with `mygit template`
 
 # Help
-- You can find the list of built-in commands by typing "mygit help"
-
-# Built In Features
-- Git repository template with README.md and .gitignore
-- Stage and commit all
-- Create, switch, and delete branches
-- See modified and untracked files
-- Sync the local repository with the remote repository
+- You can find the list of built-in commands and your commands by typing "mygit help"
 
 # Requirements
 - Git
